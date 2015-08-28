@@ -7,6 +7,6 @@
 
 Planned Features:
 
-[] .pyncignore file
-[] "run and forget" style, automatically checking for modifications in the source directory
+- [] .pyncignore file
+- [] "run and forget" style, automatically checking for modifications in the source directory
 
