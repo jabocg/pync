@@ -6,6 +6,7 @@
 - if it does exist, they are not the same AND the source file is newer
 
 Planned Features:
+
 [] .pyncignore file
 [] "run and forget" style, automatically checking for modifications in the source directory
 
