@@ -7,7 +7,7 @@ SRC = "Source/"
 DEST = "Dest/"
 
 
-def sync(src,dest):
+def sync(src,dest,debug=0):
 
     for f in os.listdir(src):   # every file and directory in the path 'src'
         pathname = os.path.join(src,f)  # combine 'src' and 'f' to create full path for current item
@@ -24,14 +24,16 @@ def sync(src,dest):
             
     
 
-def copyto(src,dest):
+def copyto(src,dest,debug=0):
+    print "src ctime:  ",os.path.getctime(src)
+    print "dest ctime: ",os.path.getctime(dest)
     if os.path.isfile(src) and os.path.isfile(dest):    # if both files exist, and are files
         if os.path.getctime(src) > os.path.getctime(dest):  # and the 'src' is newer
             print 'copying from ', src, ' to ', dest
             shutil.copy2(src,dest)  # copy source to destination
     elif not os.path.exists(dest):  # if the destination file does not exist
         print 'copying from ', src, ' to ', dest
-        open(dest,'w+') # create the destination file
+#        open(dest,'w+') # create the destination file
         shutil.copy2(src,dest)  # and copy the source file to it
     
 #sync(PATH+SRC,PATH+DEST)
@@ -39,6 +41,6 @@ def copyto(src,dest):
 if len(sys.argv) < 3:
     print 'Please give two arguments: a source directory and a destination directory'
 else:
-    sync(sys.argv[1],sys.argv[2])
+    sync(sys.argv[1],sys.argv[2],1)
 
 
