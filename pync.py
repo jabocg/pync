@@ -7,9 +7,11 @@ SRC = "Source/"
 DEST = "Dest/"
 
 
-def sync(src,dest,debug=0):
+def sync(src,dest,debug=False):
 
     for f in os.listdir(src):   # every file and directory in the path 'src'
+        if debug:
+            print "DEBUG: "
         pathname = os.path.join(src,f)  # combine 'src' and 'f' to create full path for current item
         pathname2 = os.path.join(dest,f)    # combine 'dest' and 'f' to create full path for current item
         if os.path.isdir(pathname): # if the current item is a directory
@@ -41,6 +43,7 @@ def copyto(src,dest,debug=0):
 if len(sys.argv) < 3:
     print 'Please give two arguments: a source directory and a destination directory'
 else:
-    sync(sys.argv[1],sys.argv[2],1)
+    #sync(sys.argv[1],sys.argv[2])
+    sync(sys.argv[1],sys.argv[2],True)
 
 
