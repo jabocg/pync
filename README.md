@@ -10,4 +10,6 @@ Planned Features:
 - [ ] .pyncignore file
 - [ ] "run and forget" style, automatically checking for modifications in the source directory
 - [ ] arguments?
+- [ ] actual sync ability:
+* define two directories in a file (.pynconf?) and sync them, keep them the same, auto detect modifications
 
