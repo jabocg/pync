@@ -2,10 +2,6 @@
 import os, sys, shutil, filecmp
 from stat import *
 
-PATH = "/home/jabocg/Documents/Test/"
-SRC = "Source/"
-DEST = "Dest/"
-
 
 def sync(src,dest,debug=False):
 
@@ -29,7 +25,6 @@ def sync(src,dest,debug=False):
             copyto(pathname,pathname2,debug)  # copy to destination
         else:
             print 'Error: skipping ' , pathname   # else print error
-            
     
 
 def copyto(src,dest,debug=False):
@@ -41,31 +36,7 @@ def copyto(src,dest,debug=False):
             if os.path.getctime(src) > os.path.getctime(dest):
                 shutil.copy2(src,dest)
                 print src, " -> ", dest
-    # if debug:
-    #     print "DEBUG:"
-    #     print "    src ctime:  ",os.path.getctime(src)
-    #     if os.path.exists(dest):
-    #         print "    dest ctime: ",os.path.getctime(dest)
-    #     else:
-    #         print "    dest file does not exist"
-    # if os.path.isfile(src) and os.path.isfile(dest):    # if both files exist, and are files
-    #     if debug:
-    #         print "DEBUG: both are files"
-    #     if os.path.getctime(src) > os.path.getctime(dest):  # and the 'src' is newer
-    #         if debug:
-    #             print "DEBUG: "
-    #             print "    src ctime:  ", os.path.getctime(src)
-    #             print "    dest ctime: ", os.path.getctime(dest)
-    #         print src, ' -> ', dest
-    #         shutil.copy2(src,dest)  # copy source to destination
-    # elif not os.path.exists(dest):  # if the destination file does not exist
-    #     if debug:
-    #         print "DEBUG: dest file does not exist"
-    #     print src, ' -> ', dest
-    #     # open(dest,'w+') # create the destination file
-    #     shutil.copy2(src,dest)  # and copy the source file to it
     
-#sync(PATH+SRC,PATH+DEST)
 
 if len(sys.argv) < 3:
     print 'Please give two arguments: a source directory and a destination directory'
