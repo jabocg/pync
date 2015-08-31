@@ -9,4 +9,5 @@ Planned Features:
 
 - [ ] .pyncignore file
 - [ ] "run and forget" style, automatically checking for modifications in the source directory
+- [ ] arguments?
 
