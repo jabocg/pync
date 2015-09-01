@@ -15,6 +15,9 @@ Planned Features:
     --dest: give dest directory to create background process(look into)
     --verbose -v: maybe more info about files, which ones check etc.
     --no-action -n: only list what WOULD happen, don't actually copy
+    --ignore-file: specify the ignore file, without defaults to ~/.pyncignore
+    --quiet -q: opposite of verbose, don't output anything(except errors?)
 - [ ] actual sync ability:
 * define two directories in a file (.pynconf?) and sync them, keep them the same, auto detect modifications
+- [ ] errors to output
 
