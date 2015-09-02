@@ -22,4 +22,3 @@ Planned Features:
 - [ ] errors to output
 - [ ] within the sync, detect DELETION of a file
 
-
