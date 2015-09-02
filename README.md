@@ -20,4 +20,6 @@ Planned Features:
 - [ ] actual sync ability:
 * define two directories in a file (.pynconf?) and sync them, keep them the same, auto detect modifications
 - [ ] errors to output
+- [ ] within the sync, detect DELETION of a file
+
 
