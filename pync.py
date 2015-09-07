@@ -21,9 +21,13 @@ def sync(src,dest,verbose=False):
                 print(pathname," is a directory")
             if not os.path.exists(pathname2):   # if the destination directory does not exist
                 print("creating ",pathname2)
+                if verbose:
+                    print("recursing into ",pathname)
                 os.makedirs(pathname2)  # create destination directory
             sync(pathname,pathname2,verbose)    # recursively sync data in directory
         elif os.path.isfile(pathname):  # if the current item is a file
+            if verbose:
+                print(pathname, " is a file")
             copyto(pathname,pathname2,verbose)  # copy to destination
         else:
             print('Error: skipping ' , pathname)   # else print error
@@ -31,13 +35,23 @@ def sync(src,dest,verbose=False):
 
 def copyto(src,dest,verbose=False):
     if not os.path.exists(dest):
+        if verbose:
+            print(dest, " does not exist, creating")
         shutil.copy2(src,dest)
         print(src, " -> ", dest)
     else:
+        if verbose:
+            print(dest, " exists")
         if not filecmp.cmp(src,dest):
+            if verbose:
+                print(src, " and ", dest, " are not identical")
             if os.path.getctime(src) > os.path.getctime(dest):
+                if verbose:
+                    print(src, " is newer than ", dest)
                 shutil.copy2(src,dest)
                 print(src, " -> ", dest)
+        elif verbose:
+            print(src, " and ", dest, " are identical")
     
 
 # run the sync with the args
