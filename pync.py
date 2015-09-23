@@ -3,6 +3,7 @@ import os, sys, shutil, filecmp
 import argparse
 from stat import *
 import re
+from fnmatch import translate
 
 parser = argparse.ArgumentParser()
 parser.add_argument("source", help="directory to sync from")
@@ -31,43 +32,52 @@ def getIgnore(ignoreFile):
             if realverbose:
                 print("This line is acceptable")
                 print(line)
-            patterns.append(line.rstrip())
+            patterns.append(translate(line.rstrip()))
     if realverbose:
         print(patterns)
 
     return patterns
 
+
 def sync(src,dest,verbose=False,quiet=False,no_action=False):
+    ignore=False
     patterns = getIgnore('.pyncignore')
-    print(patterns)
+    if realverbose:
+        print(patterns)
     for f in os.listdir(src):   # every file and directory in the path 'src'
         for pattern in patterns:
             if realverbose:
                 print("regex pattern: "+pattern)
             pat = re.compile(pattern)
             if pat.match(f):
-                print("matches an ignore pattern")
+                if realverbose:
+                    print("matches an ignore pattern")
+                ignore=True
+
         pathname = os.path.join(src,f)  # combine 'src' and 'f' to create full path for current item
         pathname2 = os.path.join(dest,f)    # combine 'dest' and 'f' to create full path for current item
         if realverbose:
             print("Source: ",pathname)
-        if os.path.isdir(pathname): # if the current item is a directory
-            if realverbose:
-                print(pathname," is a directory")
-            if not os.path.exists(pathname2):   # if the destination directory does not exist
-                if not quiet:
-                    print("creating ",pathname2)
+        if not ignore:
+            if os.path.isdir(pathname): # if the current item is a directory
                 if realverbose:
-                    print("recursing into ",pathname)
-                if not no_action:
-                    os.makedirs(pathname2)  # create destination directory
-            sync(pathname,pathname2,verbose,quiet,no_action)    # recursively sync data in directory
-        elif os.path.isfile(pathname):  # if the current item is a file
-            if realverbose:
-                print(pathname, " is a file")
-            copyto(pathname,pathname2,verbose,quiet,no_action)  # copy to destination
-        else:
-            print('Error: skipping ' , pathname)   # else print error
+                    print(pathname," is a directory")
+                if not os.path.exists(pathname2):   # if the destination directory does not exist
+                    if not quiet:
+                        print("creating ",pathname2)
+                    if realverbose:
+                        print("recursing into "+pathname)
+                    if not no_action:
+                        os.makedirs(pathname2)  # create destination directory
+                sync(pathname,pathname2,verbose,quiet,no_action)    # recursively sync data in directory
+            elif os.path.isfile(pathname):  # if the current item is a file
+                if realverbose:
+                    print(pathname, " is a file")
+                copyto(pathname,pathname2,verbose,quiet,no_action)  # copy to destination
+            else:
+                print('Error: skipping ' , pathname)   # else print error
+        elif realverbose:
+            print("Ignoring "+pathname)
     
 
 def copyto(src,dest,verbose=False,quiet=False,no_action=False):
