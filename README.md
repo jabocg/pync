@@ -33,3 +33,4 @@ Planned Features:
     * allows the creation of background access
     * probable have it so where if a bgprc does not exist, create it
 
+**Self Note:** using `if` and `if not` are 'shallow' copies. Use `==` and `!=` instead.
