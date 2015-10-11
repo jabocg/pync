@@ -9,16 +9,14 @@ it matches this criterea:
 
 Planned Features:
 
-- [ ] .pyncignore file
-~~    * this mostly works, or so I thought, needs more work~~
+- [x] .pyncignore file
+    * ~~this mostly works, or so I thought, needs more work~~
     * implemented
 - [ ] "run and forget" style, automatically checking for modifications in the
     source directory
 - [x] arguments
-    ~~
-    * --debug: provides aditional output, lines per file, ctime, etc
-        * might deprecate, just use verbose
-            ~~
+    * ~~--debug: provides aditional output, lines per file, ctime, etc~~
+        * ~~might deprecate, just use verbose~~
         * deprecated, using verbose
     * --source: give source directory to create background process(look into)
         * implemented
@@ -28,10 +26,8 @@ Planned Features:
         * implemented
     * --no-action -n: only list what WOULD happen, don't actually copy
         * implemented
-            ~~
-    * --ignore-file: specify the ignore file, without defaults to ~/.pyncignore
-        * not focusing on for now, just use ~/.pyncignore
-            ~~
+    * ~~--ignore-file: specify the ignore file, without defaults to ~/.pyncignore~~
+        * ~~not focusing on for now, just use ~/.pyncignore~~
         * deprecated, not needed
     * --quiet -q: opposite of verbose, don't output anything(except errors?)
         * implemented
