@@ -1,5 +1,11 @@
 #!/usr/bin/env python
-import os, sys, shutil, filecmp
+# Pync - Python Sync Utility
+# Author: Jacob Gersztyn(@jabcog)
+
+import os
+import sys
+import shutil
+import filecmp
 import argparse
 from stat import *
 import re
