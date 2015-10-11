@@ -28,23 +28,25 @@ def getIgnore(ignoreFile):
         print('Using file ',file)
     patterns=[]
     for line in file:
-        if line is not "" and line[0] is not '#':
+        if line and line[0] != '#':
             if realverbose:
                 print("This line is acceptable")
                 print(line)
+                print("Adding pattern: ",line.rstrip())
+                print("Adding pattern: ",translate(line.rstrip()))
             patterns.append(translate(line.rstrip()))
     if realverbose:
-        print(patterns)
+        print("Patterns: ",patterns)
 
     return patterns
 
 
 def sync(src,dest,verbose=False,quiet=False,no_action=False):
-    ignore=False
     patterns = getIgnore('.pyncignore')
     if realverbose:
         print(patterns)
     for f in os.listdir(src):   # every file and directory in the path 'src'
+        ignore=False
         for pattern in patterns:
             if realverbose:
                 print("regex pattern: "+pattern)
