@@ -2,7 +2,7 @@
 
 **NOTE:** This program is *very* early in its development lifetime. At this 
 current point in time, it will copy files from 1 directory to another, assuming
-it matches this criterea:
+it matches this criteria:
 
 - the destination file does not exist
 - if it does exist, they are not the same AND the source file is newer
@@ -39,6 +39,5 @@ Planned Features:
 - [ ] look into `rpyc` for a "daemon" like workings
     * allows the creation of background access
     * probable have it so where if a bgprc does not exist, create it
+- [ ] alternatively, just daemonize it
 
-**Self Note:** using `if` and `if not` are 'shallow' copies. Use `==` and `!=` 
-instead.
