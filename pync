@@ -1,2 +1,3 @@
 #!/usr/bin/env python3
-import pync
+from src.pync import main
+main()
