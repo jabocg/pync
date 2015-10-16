@@ -40,4 +40,5 @@ Planned Features:
     * allows the creation of background access
     * probable have it so where if a bgprc does not exist, create it
 - [ ] alternatively, just daemonize it
+- [ ] update logger modes, `info` is too verbose
 
