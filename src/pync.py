@@ -1,18 +1,29 @@
 #!/usr/bin/env python
 # Pync - Python Sync Utility
 # Author: Jacob Gersztyn(@jabcog)
+# 
+# Prepare yourself for a boat-load of comments
 
+# import Python 3 printing
 from __future__ import print_function
+# import OS specific file management library
 import os
-import shutil
+# import file comparison library
 import filecmp
+# import argument parsing library
 import argparse
+# import regex management library
 import re
+# import Python logging library
 import logging
+# import sys for standard output
 import sys
-from stat import *
+# from stat import *
+# import function to translate from glob to regex
 from fnmatch import translate
 from functools import wraps
+# import shutil's copy2 for file copy
+from shutil import copy2
 
 IGNORE_FILE = '.pyncignore'
 
@@ -102,15 +113,15 @@ def sync(src, dest):
         if not ignore:
             # Join the source and filename.
             source = os.path.join(src, f)
-            logger.debug("Source: {SOURCE}".format(SOURCE=source))
+            log.debug("Source: {SOURCE}".format(SOURCE=source))
             # Join the destination and filename.
             destination = os.path.join(dest, f)
-            logger.debug("Destination: {DESTINATION}".format(
+            log.debug("Destination: {DESTINATION}".format(
                 DESTINATION=destination
                 )
             )
             if os.path.isdir(source):  # if the current item is a directory
-                logger.debug("{PATH} is a directory".format(PATH=source))
+                log.debug("{PATH} is a directory".format(PATH=source))
                 # If the destination directory does not exist
                 if not os.path.exists(destination):
                     logger.info("Creating {DESTINATION}".format(
@@ -139,7 +150,7 @@ def copyto(src, dest):
     if not os.path.exists(dest):
         logger.info("{DEST} does not exist. Creating.".format(DEST=dest))
         copy(src, dest)
-        logger.debug("{SRC} -> {DEST}".foramt(SRC=src, DEST=dest))
+        logger.debug("{SRC} -> {DEST}".format(SRC=src, DEST=dest))
     else:
         logger.info("{DEST} exists.".format(DEST=dest))
         if not filecmp.cmp(src, dest):
@@ -154,7 +165,7 @@ def copyto(src, dest):
                     DEST=dest)
                 )
                 copy(src, dest)
-                logger.debug("{SRC} -> {DEST}".foramt(SRC=src, DEST=dest))
+                logger.debug("{SRC} -> {DEST}".format(SRC=src, DEST=dest))
         else:
             logger.info("{SRC} and {DEST} are identical".format(
                 SRC=src,
