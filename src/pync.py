@@ -22,8 +22,8 @@ import sys
 # import function to translate from glob to regex
 from fnmatch import translate
 from functools import wraps
-# import shutil's copy2 for file copy
-from shutil import copy2
+# import shutil 
+import shutil
 
 IGNORE_FILE = '.pyncignore'
 
@@ -113,15 +113,15 @@ def sync(src, dest):
         if not ignore:
             # Join the source and filename.
             source = os.path.join(src, f)
-            log.debug("Source: {SOURCE}".format(SOURCE=source))
+            logger.debug("Source: {SOURCE}".format(SOURCE=source))
             # Join the destination and filename.
             destination = os.path.join(dest, f)
-            log.debug("Destination: {DESTINATION}".format(
+            logger.debug("Destination: {DESTINATION}".format(
                 DESTINATION=destination
                 )
             )
             if os.path.isdir(source):  # if the current item is a directory
-                log.debug("{PATH} is a directory".format(PATH=source))
+                logger.debug("{PATH} is a directory".format(PATH=source))
                 # If the destination directory does not exist
                 if not os.path.exists(destination):
                     logger.info("Creating {DESTINATION}".format(
