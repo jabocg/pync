@@ -41,4 +41,9 @@ Planned Features:
     * probable have it so where if a bgprc does not exist, create it
 - [ ] alternatively, just daemonize it
 - [ ] update logger modes, `info` is too verbose
-
+- [ ] add SFTP support and deprecate Dropbox(personal) support
+   - look into Google's pysftp library
+   - then make scripts look for .pyncconfig file, sort of mocking Git's methodology
+- [ ] add .pyncconfig support
+   - [ ] set defaults
+   - [ ] add option for sftp, store creds here(secure?)
