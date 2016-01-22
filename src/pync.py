@@ -137,13 +137,13 @@ def sync(src, dest):
                 sync(source, destination)
             elif os.path.isfile(source):  # if the current item is a file
                 # Copy to destination
-                logger.info("{SOURCE} is a file".format(SOURCE=source))
+                logger.debug("{SOURCE} is a file".format(SOURCE=source))
                 copyto(source, destination)
             else:
                 # Unknown error fall through.
                 logger.debug("Error: skipping {FILE}".format(FILE=source))
         else:
-            logger.info("Ignoring {FILE}".format(FILE=f))
+            logger.debug("Ignoring {FILE}".format(FILE=f))
 
 
 def copyto(src, dest):
@@ -152,9 +152,9 @@ def copyto(src, dest):
         copy(src, dest)
         logger.debug("{SRC} -> {DEST}".format(SRC=src, DEST=dest))
     else:
-        logger.info("{DEST} exists.".format(DEST=dest))
+        logger.debug("{DEST} exists.".format(DEST=dest))
         if not filecmp.cmp(src, dest):
-            logger.info("{SRC} and {DEST} are not identical".format(
+            logger.debug("{SRC} and {DEST} are not identical".format(
                 SRC=src,
                 DEST=dest
                 )
@@ -167,7 +167,7 @@ def copyto(src, dest):
                 copy(src, dest)
                 logger.debug("{SRC} -> {DEST}".format(SRC=src, DEST=dest))
         else:
-            logger.info("{SRC} and {DEST} are identical".format(
+            logger.debug("{SRC} and {DEST} are identical".format(
                 SRC=src,
                 DEST=dest
                 )
